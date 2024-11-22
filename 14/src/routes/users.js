@@ -7,7 +7,6 @@ export default (app) => {
 
   app.get("/users/new", (req, res) => res.render("src/views/users/new"));
 
-  // GET /users/:id
   app.get("/users/:id", (req, res) => {
     const { id } = req.params;
     const token = req.cookies.token; 
@@ -21,7 +20,6 @@ export default (app) => {
     res.view("src/views/users/show", { user });
   });
 
-  // POST /users
   app.post("/users", (req, res) => {
     const token = generateToken();
     res.cookie("token", token);
