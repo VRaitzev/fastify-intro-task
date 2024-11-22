@@ -10,9 +10,13 @@ export default async () => {
 
   await app.register(view, { engine: { pug } });
   await app.register(formbody);
+  await app.register(middie);
 
   // BEGIN (write your solution here)
-
+  app.use((req, res, next) => {
+    res.setHeader("Cache-Control", "no-store");
+    next();
+  })
   // END
 
   app.get("/", (req, res) => res.view("src/views/index"));
